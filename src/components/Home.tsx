@@ -16,22 +16,18 @@ export default function Home({shows, searchStr}: {shows: ShowType[], searchStr:s
     return (
         <main className='w-full p-4'>
             {searchResults.length > 0 && 
-                <div className='p-4'>
-                    <h1>Search Result</h1>
-                    <ImageGallery shows={searchResults} />
-                </div>
+            <>
+                <h1>Search Result</h1>
+                <ImageGallery shows={searchResults} />
+            </>
             }
             {
                 searchResults.length == 0 && 
                 <>
-                    <div className='p-4'>
-                        <h1>Trending</h1>
-                        <ImagesSlider shows={trendings} />
-                    </div>
-                    <div className='px-4'>
-                        <h2>Recommended for you</h2>
-                        <ImageGallery shows={recommended} />
-                    </div>
+                    <h1>Trending</h1>
+                    <ImagesSlider shows={trendings} />
+                    <h2>Recommended for you</h2>
+                    <ImageGallery shows={recommended} />
                 </>    
             }
         </main>

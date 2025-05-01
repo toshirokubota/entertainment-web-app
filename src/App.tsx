@@ -39,11 +39,13 @@ function App() {
     <>
       <ShowContext.Provider value={{shows, setShows}}>
         <Header page={page} setPage={setPage}/>
-        <SearchBox setSearchStr={setSearchStr}/>
-        {page === 'Full' && <Home shows={shows} searchStr={searchStr}/>}
-        {page === 'Movies' && <Movies shows={shows} searchStr={searchStr}/>}
-        {page === 'TV series' && <TVSeries shows={shows} searchStr={searchStr}/>}
-        {page === 'Bookmarked' && <Bookmarked shows={shows} searchStr={searchStr}/>}
+        <div className='main-container'>
+          <SearchBox setSearchStr={setSearchStr} page={page}/>
+          {page === 'Full' && <Home shows={shows} searchStr={searchStr}/>}
+          {page === 'Movies' && <Movies shows={shows} searchStr={searchStr}/>}
+          {page === 'TV series' && <TVSeries shows={shows} searchStr={searchStr}/>}
+          {page === 'Bookmarked' && <Bookmarked shows={shows} searchStr={searchStr}/>}
+        </div>
       </ShowContext.Provider>
     </>
   )

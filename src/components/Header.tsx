@@ -7,10 +7,10 @@ export default function Header(
     {page, setPage}: {page: PageType, setPage: React.Dispatch<React.SetStateAction<PageType>>}): React.JSX.Element {
 
     return (
-        <header className='flex items-center h-8 px-4 bg-slate-900 '>
-            <nav className='flex justify-between w-full h-4 my-auto'>
+        <header> {/* className='flex items-center h-8 px-4 bg-slate-900'> */}
+            <nav> {/* <nav className='flex justify-between w-full h-4'> */}
                 <img src={staticAsset('/logo.svg')} alt='logo'/>
-                <div className='flex gap-4'>
+                <div className='nav-icons flex gap-6'>
                     <img src={staticAsset('/assets/icon-nav-home.svg')} alt='home icon'
                         className={`nav-icon ${page === 'Full' ? 'selected' : ''}`} 
                         onClick={()=>{setPage('Full')}}/>

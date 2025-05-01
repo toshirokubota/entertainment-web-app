@@ -1,10 +1,6 @@
 import React from 'react';
 import { PageType } from '../types';
 
-type Props = {
-    placeholder?: string
-}
-
 export default function SearchBox({page, setSearchStr}: 
     {page: PageType, setSearchStr: React.Dispatch<React.SetStateAction<string>>}): React.JSX.Element {
     const placeholder = page === 'Full' ? 'Search for movies or TV series' : 
@@ -22,7 +18,7 @@ export default function SearchBox({page, setSearchStr}:
     return (
         <div className='flex items-center gap-4 w-full px-4 py-2'>
             <i className="fa-solid fa-magnifying-glass"></i>
-            <input type='text' placeholder={placeholder} onKeyDown={handleKeyDown}/>
+            <input className='flex-1' type='text' placeholder={placeholder} onKeyDown={handleKeyDown}/>
         </div>
     )
 

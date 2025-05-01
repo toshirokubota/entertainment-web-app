@@ -11,6 +11,70 @@ body {
 
 #root {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $desktop-break) {
+        flex-direction: row;
+        padding: 2rem;
+    }
+}
+
+// .main-container {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+// }
+
+// main {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+// }
+
+h1 {
+    font-size: clamp(1.25px, 4vw + 5px, 2rem);
+    padding-block: clamp(0.5rem, 2vw, 1.5rem)
+}
+h2 {
+    font-size: clamp(1.25px, 4vw + 5px, 2rem);
+    padding-block: clamp(0.5rem, 1vw, 1.5rem)
+}
+
+header {
+    display: flex;
+    flex: 1;
+    align-items: center; 
+    height: 2rem;
+    min-height: 2rem;
+    padding-inline: 1rem;
+    background-color: var(--color-slate-900);
+    @media (min-width: $desktop-break) {
+        flex-direction: column;
+        width: 6rem;
+        height: 100%;
+        padding: 2rem 0rem;
+        min-width: 6rem;
+    }
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 1rem;
+    .nav-icons {
+        display: flex;
+        gap: 1.5rem;
+    }
+    @media (min-width: $desktop-break) {
+        flex-direction: column;
+        justify-content: start;
+        gap: 14rem;
+        width: 2rem;
+        height: 100%;
+        .nav-icons {
+            flex-direction: column;
+        }
+    }
 }
 
 .bm-icon-container {
@@ -26,12 +90,16 @@ body {
 .show-summary {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items:baseline;
     justify-content:flex-start;
     padding-block: 0.25rem;
     gap:0.25rem;
-    font-size: 11px;
+    //font-size: 11px;
+    font-size: clamp(12px, 2vw + 4px, 15px);
     color: var(--color-slate-100);
+}
+.show-title {
+    font-size: clamp(15px, 3vw + 5px, 24px);
 }
 
 .image-slider {
@@ -42,24 +110,24 @@ body {
     border-radius: 8px;
     overflow-x: auto;
     height: 140px;
+    margin-right: -2rem;
     .image-container {
         display: inline-block;
         flex: none;
         position: relative;
-        & > img {
+        & > picture > img {
             height: 140px;
             border-radius: 8px;
         }
         .show-title {
             position: absolute;
-            font-size: 0.75rem;
             left: 5%;
-            bottom: 5%;
+            bottom: 10%;
         }
         .show-summary {
             position: absolute;
             left: 5%;
-            bottom: 15%;
+            bottom: 25%;
             width: 100%;
         }
         .category-icon {
@@ -73,12 +141,30 @@ body {
     }
 }
 
+@media (min-width: $tablet-break) {
+    .image-slider {
+        height: 230px;
+        .image-container {
+            picture > img {
+                height: 230px;
+            }
+        }
+    }
+}
+
+
 .image-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     //margin-inline: 1rem;
     gap: 1rem;
+    @media (min-width: $tablet-break) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: $desktop-break) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .show-card {
@@ -93,8 +179,65 @@ body {
     }
 }
 
-.patterned-shape {
-    filter: invert(50%) sepia(80%) saturate(200%) hue-rotate(90deg);
+.nav-icon:hover, .nav-icon:focus {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(69%) saturate(3409%) hue-rotate(331deg) brightness(98%) contrast(102%);
+}
+.nav-icon.selected {
+    filter: brightness(0) saturate(100%) invert(99%) sepia(2%) saturate(363%) hue-rotate(101deg) brightness(115%) contrast(100%);
+    opacity: 0.75
+    //filter: invert(50%) sepia(80%) saturate(200%) hue-rotate(90deg);
+    //filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+.category-icon {
+    //filter: invert(50%) sepia(80%) saturate(200%) hue-rotate(90deg);
+    //filter: invert(100%) sepia(0%) saturate(0%); //hue-rotate(93deg) brightness(103%) contrast(103%);
+    //color: red;
+    //opacity: 0.75;
+    filter: brightness(0) saturate(100%) invert(99%) sepia(2%) saturate(363%) hue-rotate(101deg) brightness(115%) contrast(100%);
+    opacity: 0.75;
 }
 
+.playable-image {
+    position: relative;
+    //z-index: 0;
+    .overlay {
+        position: absolute;
+        display: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        //z-index: 1;
+    }
+    .play-button {
+        width: 8rem;
+        height: 3rem;
+        font-size: 1rem;
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        //z-index: 2;
+
+        background-color: rgba(0, 0, 0, 0.25);
+        border-radius: 1.5rem;
+        & > img {
+            display: inline;
+        }
+        & > span {
+            margin-left: 1rem;
+        }
+    }
+    &:hover, &:focus {
+        cursor: pointer;
+    }
+    &:hover > .overlay, &:focus > .overlay {
+        display: block;
+    }
+    &:hover > .play-button, &:focus > .play-button {
+        display: inline-block;
+    }
+}
   

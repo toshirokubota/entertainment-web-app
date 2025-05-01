@@ -12,10 +12,8 @@ export default function Movies({shows, searchStr}: {shows: ShowType[], searchStr
 
     return (
         <main className='w-full p-4'>
-            <div className='p-4'>
-                <h1>Movies</h1>
-                <ImageGallery shows={movies} />
-            </div>
+            <h1>Movies</h1>
+            <ImageGallery shows={movies} />
         </main>
     );
 }

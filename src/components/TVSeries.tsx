@@ -11,10 +11,8 @@ export default function TVSeries({shows, searchStr}: {shows: ShowType[], searchS
     }
     return (
         <main className='w-full p-4'>
-            <div className='p-4'>
-                <h1>TV Series</h1>
-                <ImageGallery shows={series} />
-            </div>
+            <h1>TV Series</h1>
+            <ImageGallery shows={series} />
         </main>
     );
 }

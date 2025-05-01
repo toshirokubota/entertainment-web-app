@@ -12,10 +12,8 @@ export default function Bookmarked({shows, searchStr}: {shows: ShowType[], searc
 
     return (
         <main className='w-full p-4'>
-            <div className='p-4'>
-                <h1>Bookmarked</h1>
-                <ImageGallery shows={marked} />
-            </div>
+            <h1>Bookmarked</h1>
+            <ImageGallery shows={marked} />
         </main>
     );
 }
