@@ -1,28 +1,31 @@
 import React from 'react';
+import '../App.css';
+import { staticAsset } from '../libs';
+import { PageType } from '../types';
 
-<img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Logo" />
+export default function Header(
+    {page, setPage}: {page: PageType, setPage: React.Dispatch<React.SetStateAction<PageType>>}): React.JSX.Element {
 
-export default function Header(): React.JSX.Element {
-
-    function staticAsset(assetName: string): string {
-        return `${import.meta.env.BASE_URL}${assetName}`
-    }
     return (
-        <header>
-            <nav className='flex w-full'>
-                <img src={staticAsset('/logo.svg')} alt='logo' />
-                <img src={staticAsset('/assets/icon-nav-home.svg')} alt='home icon' className='ml-auto'/>
-                <img src={staticAsset('/assets/icon-nav-movies.svg')} alt='movie icon' />
-                <img src={staticAsset('/assets/icon-nav-tv-series.svg')} alt='TV series icon' />
-                <img src={staticAsset('/assets/icon-nav-bookmark.svg')} alt='bookmark icon' />
+        <header className='flex items-center h-8 px-4 bg-slate-900 '>
+            <nav className='flex justify-between w-full h-4 my-auto'>
+                <img src={staticAsset('/logo.svg')} alt='logo'/>
+                <div className='flex gap-4'>
+                    <img src={staticAsset('/assets/icon-nav-home.svg')} alt='home icon'
+                        className={`nav-icon ${page === 'Full' ? 'selected' : ''}`} 
+                        onClick={()=>{setPage('Full')}}/>
+                    <img src={staticAsset('/assets/icon-nav-movies.svg')} alt='movie icon' 
+                        className={`nav-icon ${page === 'Movies' ? 'selected' : ''}`} 
+                        onClick={()=>{setPage('Movies')}}/>
+                    <img src={staticAsset('/assets/icon-nav-tv-series.svg')} alt='TV series icon' 
+                        className={`nav-icon ${page === 'TV series' ? 'selected' : ''}`} 
+                        onClick={()=>{setPage('TV series')}}/>
+                    <img src={staticAsset('/assets/icon-nav-bookmark.svg')} alt='bookmark icon' 
+                        className={`nav-icon ${page === 'Bookmarked' ? 'selected' : ''}`} 
+                        onClick={()=>{setPage('Bookmarked')}}/>
+                </div>
+                <img src={staticAsset('/assets/image-avatar.png')} alt='user avatar image' />
             </nav>
-            {/* <nav className='flex w-full'>
-                <img src='/logo.svg' alt='logo' />
-                <img src='/assets/icon-nav-home.svg' alt='home icon' className='ml-auto'/>
-                <img src='/assets/icon-nav-movies.svg' alt='movie icon' />
-                <img src='/assets/icon-nav-tv-series.svg' alt='TV series icon' />
-                <img src='/assets/icon-nav-bookmark.svg' alt='bookmark icon' />
-            </nav> */}
 
         </header>
     );

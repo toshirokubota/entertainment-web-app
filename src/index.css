@@ -37,11 +37,11 @@ body {
 }
 
 /* make images easier to work with */
-img,
+/* img,
 picutre {
     max-width: 100%;
     display: block;
-}
+} */
 
 /* make form elements easier to work with */
 input,
