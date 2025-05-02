@@ -8,7 +8,7 @@ export default function SearchBox({page, setSearchStr}:
         page === 'TV series' ? 'Search for TV series' :
         page === 'Bookmarked' ? 'Search for bookmarked shows' : 'Search for movies or TV series';
 
-    function handleKeyDown(event: KeyboardEvent) {
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
         if(event.key === 'Enter') {
             //console.log(event.target.value);
             setSearchStr((event.target as HTMLInputElement).value);

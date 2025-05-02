@@ -10,6 +10,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 @media (min-width: 1000px) {
   #root {
@@ -223,4 +224,46 @@ nav .nav-icons {
 }
 .playable-image:hover > .play-button, .playable-image:focus > .play-button {
   display: inline-block;
+}
+
+.login-page, .signup-page {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: var(--color-slate-900);
+  color: white;
+  padding: 2rem;
+  margin-inline: 1rem;
+  margin-top: clamp(5rem, 5vw, 10rem);
+  max-width: 400px;
+}
+.login-page img, .signup-page img {
+  margin-inline: auto;
+}
+.login-page h1, .signup-page h1 {
+  font-size: 2rem;
+}
+.login-page form, .signup-page form {
+  margin-block: 2rem;
+}
+.login-page form * + *, .signup-page form * + * {
+  margin-top: 2rem;
+}
+.login-page input, .signup-page input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: solid 1pt var(--color-slate-100);
+  padding-left: 1rem;
+}
+.login-page button, .signup-page button {
+  width: 100%;
+  background-color: var(--color-red-500);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.login-page .sign-up, .signup-page .sign-up {
+  color: var(--color-red-700);
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */
