@@ -10,8 +10,15 @@ export default function BookmarkIcon({show}: {show: ShowType}) : React.JSX.Eleme
         const index = shows.indexOf(show);
         setShows([...shows.slice(0, index), {...show, isBookmarked: !show.isBookmarked}, ...shows.slice(index + 1)]);
     }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if(event.key === 'Enter' || event.key === 'Space'){
+            toggleBookmark();
+        }
+    }
+
     return (
-        <div className='bm-icon-container' onClick={toggleBookmark}>
+        <div className='bm-icon-container' onClick={toggleBookmark} onKeyDown={handleKeyDown} tabIndex={0}>
             <img className='bm-icon'
                 src={show.isBookmarked ? staticAsset('/assets/icon-bookmark-full.svg'): staticAsset('/assets/icon-bookmark-empty.svg')}
                 alt='bookmark icon'/>

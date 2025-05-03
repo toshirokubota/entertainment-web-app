@@ -12,8 +12,14 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.main-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 @media (min-width: 1000px) {
-  #root {
+  .main-page {
     flex-direction: row;
     padding: 2rem;
   }
@@ -58,6 +64,32 @@ nav .nav-icons {
   display: flex;
   gap: 1.5rem;
 }
+nav .avatar-container {
+  position: relative;
+  height: 100%;
+}
+nav .avatar-container img {
+  height: 100%;
+}
+nav .avatar-menu {
+  display: block;
+  position: absolute;
+  top: 2rem;
+  left: -3rem;
+  background-color: transparent;
+}
+nav .avatar-menu button {
+  display: inline-block;
+  margin: auto;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: var(--color-red-500);
+  color: var(--color-slate-100);
+}
+nav .avatar-menu button:hover, nav .avatar-menu button:focus {
+  background-color: var(--color-red-400);
+  color: var(--color-slate-100);
+}
 @media (min-width: 1000px) {
   nav {
     flex-direction: column;
@@ -68,6 +100,14 @@ nav .nav-icons {
   }
   nav .nav-icons {
     flex-direction: column;
+  }
+  nav .avatar-container {
+    width: 100%;
+    height: auto;
+  }
+  nav .avatar-container img {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -111,7 +151,7 @@ nav .nav-icons {
   flex: none;
   position: relative;
 }
-.image-slider .image-container > picture > img {
+.image-slider .image-container picture > img {
   height: 140px;
   border-radius: 8px;
 }
@@ -232,10 +272,10 @@ nav .nav-icons {
   align-items: start;
   background-color: var(--color-slate-900);
   color: white;
-  padding: 2rem;
-  margin-inline: 1rem;
+  padding: 2rem 1rem;
   margin-top: clamp(5rem, 5vw, 10rem);
   max-width: 400px;
+  width: calc(100% - 2rem);
 }
 .login-page img, .signup-page img {
   margin-inline: auto;
@@ -244,10 +284,24 @@ nav .nav-icons {
   font-size: 2rem;
 }
 .login-page form, .signup-page form {
+  width: 100%;
   margin-block: 2rem;
 }
 .login-page form * + *, .signup-page form * + * {
   margin-top: 2rem;
+}
+.login-page .error-msg, .signup-page .error-msg {
+  color: var(--color-red-500);
+}
+.login-page label, .signup-page label {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.login-page label .error-msg, .signup-page label .error-msg {
+  position: absolute;
+  right: 0;
+  top: -2rem;
 }
 .login-page input, .signup-page input {
   width: 100%;
@@ -256,6 +310,12 @@ nav .nav-icons {
   border-bottom: solid 1pt var(--color-slate-100);
   padding-left: 1rem;
 }
+.login-page input.error-input, .signup-page input.error-input {
+  border-bottom-color: var(--color-red-500);
+}
+.login-page input:hover, .login-page input:focus, .signup-page input:hover, .signup-page input:focus {
+  caret-color: var(--color-red-500);
+}
 .login-page button, .signup-page button {
   width: 100%;
   background-color: var(--color-red-500);
@@ -263,7 +323,12 @@ nav .nav-icons {
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
+.login-page button:focus, .login-page button:hover, .signup-page button:focus, .signup-page button:hover {
+  background-color: var(--color-slate-100);
+  color: var(--color-slate-900);
+}
 .login-page .sign-up, .signup-page .sign-up {
   color: var(--color-red-700);
   cursor: pointer;
+  margin-left: 1rem;
 }/*# sourceMappingURL=App.css.map */

@@ -34,7 +34,7 @@ export function ShowSummary({show}: {show: ShowType}): React.JSX.Element {
 export default function ShowCard({show}: {show: ShowType}): React.JSX.Element {
     return (
         <div className='show-card'>
-            <div className='playable-image'>
+            <div tabIndex={0} className='playable-image'>
                 <picture>
                     <source srcSet={staticAsset(show.thumbnail.regular.large.slice(1))} media="(min-width: 1000px)" />
                     <source srcSet={staticAsset(show.thumbnail.regular.medium.slice(1))} media="(min-width: 700px)" />

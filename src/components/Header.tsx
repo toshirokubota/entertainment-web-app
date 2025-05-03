@@ -1,30 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { staticAsset } from '../libs';
 import { PageType } from '../types';
 
 export default function Header(
-    {page, setPage}: {page: PageType, setPage: React.Dispatch<React.SetStateAction<PageType>>}): React.JSX.Element {
+    {page, setPage, setLogged}: 
+        {page: PageType, 
+        setPage: React.Dispatch<React.SetStateAction<PageType>>,
+        setLogged: React.Dispatch<React.SetStateAction<boolean>>}): React.JSX.Element {
+    
+    const [showAvatarMenu, setShowAvatarMenu] = useState(false);
 
+    function AvatarMenu() {
+        return (
+            <div className={'avatar-menu'}>
+                <button 
+                    onClick={()=>setLogged(false)}
+                    onKeyDown={()=>setLogged(false)}>Logout</button>
+            </div>
+        )
+    }
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLImageElement>) => {
+        if(event.key === 'Enter' || event.key === 'Space'){
+            setPage(event.target.dataset.page);
+        }
+    }
+    // const displayAvatarMenu  = (event) => {
+    //     setShowAvatarMenu(prev => !prev);
+    // }
+    
     return (
-        <header> {/* className='flex items-center h-8 px-4 bg-slate-900'> */}
-            <nav> {/* <nav className='flex justify-between w-full h-4'> */}
+        <header> 
+            <nav> 
                 <img src={staticAsset('/logo.svg')} alt='logo'/>
                 <div className='nav-icons flex gap-6'>
                     <img src={staticAsset('/assets/icon-nav-home.svg')} alt='home icon'
                         className={`nav-icon ${page === 'Full' ? 'selected' : ''}`} 
-                        onClick={()=>{setPage('Full')}}/>
+                        data-page='Full'
+                        onClick={()=>{setPage('Full')}}
+                        onKeyDown={handleKeyDown} tabIndex={0}/>
                     <img src={staticAsset('/assets/icon-nav-movies.svg')} alt='movie icon' 
                         className={`nav-icon ${page === 'Movies' ? 'selected' : ''}`} 
-                        onClick={()=>{setPage('Movies')}}/>
+                        data-page='Movies'
+                        onClick={()=>{setPage('Movies')}}
+                        onKeyDown={handleKeyDown} tabIndex={0}/>
                     <img src={staticAsset('/assets/icon-nav-tv-series.svg')} alt='TV series icon' 
                         className={`nav-icon ${page === 'TV series' ? 'selected' : ''}`} 
-                        onClick={()=>{setPage('TV series')}}/>
+                        data-page='TV series'
+                        onClick={()=>{setPage('TV series')}}
+                        onKeyDown={handleKeyDown} tabIndex={0}/>
                     <img src={staticAsset('/assets/icon-nav-bookmark.svg')} alt='bookmark icon' 
                         className={`nav-icon ${page === 'Bookmarked' ? 'selected' : ''}`} 
-                        onClick={()=>{setPage('Bookmarked')}}/>
+                        data-page='Bookmarked'
+                        onClick={()=>{setPage('Bookmarked')}}
+                        onKeyDown={handleKeyDown} tabIndex={0}/>
                 </div>
-                <img src={staticAsset('/assets/image-avatar.png')} alt='user avatar image' />
+                <div className='avatar-container'
+                        tabIndex={0}
+                        onClick={setShowAvatarMenu}
+                        onKeyDown={setShowAvatarMenu} >
+                    <img src={staticAsset('/assets/image-avatar.png')} alt='user avatar image' />
+                    {showAvatarMenu && <AvatarMenu />}
+                </div>
             </nav>
 
         </header>
