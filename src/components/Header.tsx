@@ -16,7 +16,7 @@ export default function Header(
             <div className={'avatar-menu'}>
                 <button 
                     onClick={()=>setLogged(false)}
-                    onKeyDown={()=>setLogged(false)}>Logout</button>
+                    onKeyDown={(event)=>{event.key === 'Enter' && setLogged(false)} }>Logout</button>
             </div>
         )
     }
@@ -26,9 +26,6 @@ export default function Header(
             setPage(target.dataset?.page as PageType);
         }
     }
-    // const displayAvatarMenu  = (event) => {
-    //     setShowAvatarMenu(prev => !prev);
-    // }
     
     return (
         <header> 

@@ -8,18 +8,15 @@ export default function SearchBox({page, setSearchStr}:
         page === 'TV series' ? 'Search for TV series' :
         page === 'Bookmarked' ? 'Search for bookmarked shows' : 'Search for movies or TV series';
 
-    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-        if(event.key === 'Enter') {
-            //console.log(event.target.value);
-            setSearchStr((event.target as HTMLInputElement).value);
-        }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setSearchStr((event.target as HTMLInputElement).value);
     }
 
     return (
-        <div className='flex items-center gap-4 w-full px-4 py-2'>
+        <label htmlFor='search-box' className='flex items-center gap-4 w-full px-4 py-2'>
             <i className="fa-solid fa-magnifying-glass"></i>
-            <input className='flex-1' type='text' placeholder={placeholder} onKeyDown={handleKeyDown}/>
-        </div>
+            <input id='search-box' className='flex-1' type='text' placeholder={placeholder} onChange={handleChange}/>
+        </label>
     )
 
 }

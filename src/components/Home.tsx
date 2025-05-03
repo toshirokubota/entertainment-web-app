@@ -15,7 +15,7 @@ export default function Home({shows, searchStr}: {shows: ShowType[], searchStr:s
 
     return (
         <main className='w-full p-4'>
-            {searchResults.length > 0 && 
+            {searchStr.length > 0 && 
             <>
                 <h1>Search Result</h1>
                 <ImageGallery shows={searchResults} />
