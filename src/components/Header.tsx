@@ -22,7 +22,8 @@ export default function Header(
     }
     const handleKeyDown = (event: React.KeyboardEvent<HTMLImageElement>) => {
         if(event.key === 'Enter' || event.key === 'Space'){
-            setPage(event.target.dataset.page);
+            const target = event.target as HTMLButtonElement;
+            setPage(target.dataset?.page as PageType);
         }
     }
     // const displayAvatarMenu  = (event) => {
@@ -57,8 +58,8 @@ export default function Header(
                 </div>
                 <div className='avatar-container'
                         tabIndex={0}
-                        onClick={setShowAvatarMenu}
-                        onKeyDown={setShowAvatarMenu} >
+                        onClick={()=>setShowAvatarMenu(prev=>!prev)}
+                        onKeyDown={()=>setShowAvatarMenu(prev=>!prev)} >
                     <img src={staticAsset('/assets/image-avatar.png')} alt='user avatar image' />
                     {showAvatarMenu && <AvatarMenu />}
                 </div>
